@@ -1,0 +1,12 @@
+<VirtualHost *>
+    ServerAdmin webmaster@webmaster
+    ServerName <%= scope.lookupvar('php::params::hostname') %>
+    DocumentRoot <%= scope.lookupvar('php::params::public_dir') %>
+    ErrorLog <%= scope.lookupvar('php::params::vagrant_dir') %>/error.log
+    CustomLog <%= scope.lookupvar('php::params::vagrant_dir') %>/access.log common
+    <Directory <%= scope.lookupvar('php::params::vagrant_dir') %>>
+        Require all granted
+        AllowOverride All
+    </Directory>
+    ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000<%= scope.lookupvar('php::params::public_dir') %>/$1
+</VirtualHost>
