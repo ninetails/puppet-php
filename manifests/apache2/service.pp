@@ -3,7 +3,6 @@ class php::apache2::service {
     ensure     => running,
     hasstatus  => true,
     hasrestart => true,
-    enable     => true,
     require    => Class['php::apache2::config'],
   }
 }
