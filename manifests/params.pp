@@ -15,6 +15,7 @@ class php::params {
       $fpm_package_name = 'php5-fpm'
       $fpm_service_name = 'php5-fpm'
       $fpm_dir = "${php_dir}/fpm"
+      $pear_package_name = 'php-pear'
     }
     default: {
       case $::operatingsystem {
