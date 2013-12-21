@@ -1,8 +1,4 @@
 class php::fpm::config {
-  package { $php::params::php_xdebug_package:
-    ensure  => 'installed',
-    require => Class['php::fpm::install'],
-  }
   file { "${php::params::fpm_dir}/pool.d/www.conf":
     ensure  => 'present',
     owner   => 'root',

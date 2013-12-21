@@ -11,6 +11,7 @@ class php::params {
       $php_dir = '/etc/php5'
       $php_package_name = 'php5'
       $php_xdebug_package = 'php5-xdebug'
+      $php_module_prefix = 'php5-'
       $fpm_package_name = 'php5-fpm'
       $fpm_service_name = 'php5-fpm'
       $fpm_dir = "${php_dir}/fpm"
