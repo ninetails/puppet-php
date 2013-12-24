@@ -1,6 +1,7 @@
 class php::params {
   case $::osfamily {
     debian: {
+      $ppa = 'ppa:ondrej/php5'
       $hostname = "vagrant.ninetails.com.br"
       $vagrant_dir = '/vagrant'
       $public_dir = "${vagrant_dir}"
