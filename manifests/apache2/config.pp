@@ -4,6 +4,7 @@ class php::apache2::config {
     notify  => Class['php::apache2::service'],
   }
 
+  $aliases = $php::params::apache_aliases
   file { "${php::params::apache_sites_available_dir}/001-vagrant.conf":
     ensure  => 'present',
     owner   => 'root',

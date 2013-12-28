@@ -5,6 +5,7 @@ class php::params {
       $hostname = hiera('php::hostname', "vagrant.ninetails.com.br")
       $vagrant_dir = hiera('php::vagrant_dir', '/vagrant')
       $public_dir = hiera('php::public_dir', "${vagrant_dir}")
+      $apache_aliases = hiera('php::apache_aliases', nil)
       $apache_package_name = hiera('php::apache_package_name', 'apache2')
       $apache_service_name = hiera('php::apache_service_name', 'apache2')
       $apache_dir = hiera('php::apache_dir', '/etc/apache2')

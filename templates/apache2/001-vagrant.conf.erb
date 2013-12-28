@@ -1,6 +1,11 @@
 <VirtualHost *>
     ServerAdmin webmaster@webmaster
     ServerName <%= scope.lookupvar('php::params::hostname') %>
+<% if @aliases && @aliases.is_a?(Array) -%>
+<% @aliases.each do |a| -%>
+    ServerAlias <%= a %>
+<% end -%>
+<% end -%>
     DocumentRoot <%= scope.lookupvar('php::params::public_dir') %>
     ErrorLog <%= scope.lookupvar('php::params::vagrant_dir') %>/error.log
     CustomLog <%= scope.lookupvar('php::params::vagrant_dir') %>/access.log common
