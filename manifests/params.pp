@@ -17,6 +17,7 @@ class php::params {
       $fpm_package_name = hiera('php::fpm_package_name', 'php5-fpm')
       $fpm_service_name = hiera('php::fpm_service_name', 'php5-fpm')
       $fpm_dir = hiera('php::fpm_dir', "${php_dir}/fpm")
+      $php_cli_dir = hiera('php::php_cli_dir', "${php_dir}/cli")
       $pear_package_name = hiera('php::pear_package_name', 'php-pear')
     }
     default: {

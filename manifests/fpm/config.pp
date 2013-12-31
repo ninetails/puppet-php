@@ -20,12 +20,12 @@ class php::fpm::config {
   }
 
   file { "${php::params::fpm_dir}/conf.d/00-local.ini":
-    ensure  => 'present',
+    ensure  => 'link',
+    target  => "${php::params::php_dir}/mods-available/local.ini",
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    source  => "puppet:///modules/php/00-local.ini",
-    require => [Class['php::fpm::install'], Package[$php::params::php_xdebug_package]],
+    require => File["${php::params::php_dir}/mods-available/local.ini"],
     notify  => Class['php::fpm::service'],
   }
 }
