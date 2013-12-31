@@ -14,6 +14,7 @@ class php::params {
       $php_package_name = hiera('php::php_package_name', 'php5')
       $php_xdebug_package = hiera('php::php_xdebug_package', 'php5-xdebug')
       $php_module_prefix = hiera('php::php_module_prefix', 'php5-')
+      $php_timezone = hiera('php::php_timezone', 'America/Sao_Paulo')
       $fpm_package_name = hiera('php::fpm_package_name', 'php5-fpm')
       $fpm_service_name = hiera('php::fpm_service_name', 'php5-fpm')
       $fpm_dir = hiera('php::fpm_dir', "${php_dir}/fpm")

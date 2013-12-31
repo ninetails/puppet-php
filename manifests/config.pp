@@ -9,7 +9,7 @@ class php::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    source  => "puppet:///modules/php/local.ini",
+    content => template('php/php5/local.ini.erb'),
     require => Package[$php::params::php_package_name],
   }
 
