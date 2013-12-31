@@ -1,6 +1,8 @@
 class php::config {
-  package { $php::params::php_xdebug_package:
-    ensure  => 'installed',
+  php::module { [
+    'cli',
+    'xdebug'
+  ]:
     require => Package[$php::params::php_package_name],
   }
 
@@ -10,21 +12,16 @@ class php::config {
     group   => 'root',
     mode    => '0644',
     content => template('php/php5/local.ini.erb'),
-    require => Package[$php::params::php_package_name],
+    require => Php::Module['cli'],
   }
 
-  if (defined(Package['php5-cli'])) {
-    file { "${php::params::php_cli_dir}/conf.d/00-local.ini":
-      ensure  => 'link',
-      target  => "${php::params::php_dir}/mods-available/local.ini",
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
-      require => [
-        File["${php::params::php_dir}/mods-available/local.ini"],
-        Package['php5-cli']
-      ],
-      notify  => Class['php::fpm::service'],
-    }
+  file { "${php::params::php_cli_dir}/conf.d/00-local.ini":
+    ensure  => 'link',
+    target  => "${php::params::php_dir}/mods-available/local.ini",
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    require => File["${php::params::php_dir}/mods-available/local.ini"],
+    notify  => Class['php::fpm::service'],
   }
 }

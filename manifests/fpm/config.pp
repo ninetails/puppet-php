@@ -15,7 +15,10 @@ class php::fpm::config {
     group   => 'root',
     mode    => '0644',
     source  => "puppet:///modules/php/20-xdebug.ini",
-    require => [Class['php::fpm::install'], Package[$php::params::php_xdebug_package]],
+    require => [
+      Class['php::fpm::install'],
+      Php::Module['xdebug']
+    ],
     notify  => Class['php::fpm::service'],
   }
 
@@ -25,7 +28,10 @@ class php::fpm::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    require => File["${php::params::php_dir}/mods-available/local.ini"],
+    require => [
+      Class['php::fpm::install'],
+      File["${php::params::php_dir}/mods-available/local.ini"],
+    ],
     notify  => Class['php::fpm::service'],
   }
 }

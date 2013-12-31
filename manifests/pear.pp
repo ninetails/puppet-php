@@ -7,7 +7,7 @@ define php::pear (
   include php::pear::config
 
   $cmd = $command ? {
-    undef => "pear install -o ${name}",
+    undef => "pear install --alldeps -o ${name}",
     default => $command,
   }
 
@@ -18,7 +18,7 @@ define php::pear (
 
   exec { "pear ${name}":
     command => $cmd,
-    require => Exec['pear update-channels'],
+    require => Class['php::pear::config'],
     timeout => $tout,
   }
 }

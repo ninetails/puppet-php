@@ -1,5 +1,13 @@
 class php::composer {
   include php
+
+  if (!defined(Package['curl'])) {
+    package { 'curl':
+      ensure => present,
+      notify => Exec['install composer'],
+    }
+  }
+
   exec { 'install composer':
     command => 'curl -sS https://getcomposer.org/installer | php',
     cwd => '/home/vagrant',
